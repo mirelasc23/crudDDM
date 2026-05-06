@@ -22,6 +22,7 @@ class MyApp extends StatelessWidget {
         ),
         home: TelaLista(titulo: 'Tarefas'),
         routes: {
+          Rotas.telaForm: (context) => TelaLista(titulo: 'Tarefas'),
           Rotas.telaForm: (context) => TelaForm(titulo: 'Nova Tarefa'),
           Rotas.tarefaDetalhada: (context) => TelaDetalhes(titulo: 'Tarefa'),
         },

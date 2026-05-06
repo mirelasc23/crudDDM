@@ -1,4 +1,4 @@
-import 'package:aula05_sqlite/models/model.dart';
+import 'package:crudDDM/model/model.dart';
 import 'package:sqflite/sqflite.dart' as sqlite;
 import 'package:path/path.dart' as path;
 
@@ -8,7 +8,7 @@ class DBUtil{
     //local onde o banco de dados sera armazenado
     final databasePath = await sqlite.getDatabasesPath();
     //join para criar o caminho p arq de forma correta, independente do SO
-    final arqBD = path.join (databasePath, "pessoas.db");
+    final arqBD = path.join (databasePath, "tarefas.db");
 
     //abrir o banco de dados, se nao existir, ele cria
     //funcao onCreate so eh chamada na primeira vez
@@ -17,12 +17,16 @@ class DBUtil{
       version: 1,
       onCreate: (db, version) {
         db.execute('''
-          CREATE TABLE Pessoa(
+          CREATE TABLE Tarefa(
             id INTEGER PRIMARY KEY AUTOINCREMENT,
-            nome TEXT NOT NULL,
-            estaFeliz INTEGER NOT NULL
+            titulo TEXT NOT NULL,
+            descricao TEXT,
+            data_prevista TEXT,
+            importante INTEGER NOT NULL,
+            realizada INTEGER NOT NULL,
+            custo INTEGER
           )
-        ''');
+        ''');     //custo como INTERGER pq salva em centavos, para evitar problemas de arredondamento com FLOAT ou REAL
       },
     );
   } 
