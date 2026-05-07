@@ -1,89 +1,71 @@
 import 'package:ddm_crud_sqlite/model/model.dart';
+import 'package:ddm_crud_sqlite/util/rotas.dart';
 import 'package:flutter/material.dart';
 
 class Tarefa implements Model {
-  final int id;
-  final String titulo;
-  final String descricao;
-  final int prioridade;
+  int? _id;
+  String titulo;
+  String? descricao;
+  DateTime dataPrevista;
+  bool importante;
   bool _realizado;
+  double? custo;
 
   Tarefa({
-    required this.id,
     required this.titulo,
-    required this.descricao,
-    required this.prioridade,
-    bool realizadoInicial = false,
+    this.descricao,
+    required this.importante,
+    required this.dataPrevista,
+    this.custo,
+  }) : _realizado = false;
 
-    //dynamic estaRealizado({realizado: false}),// = false,
-    //this._realizado = estaRealizado,
-  }) : _realizado = realizadoInicial;
-  //Tarefa({required this.titulo, required this.descricao, required this.prioridade, dynamic estaRealizado=false, required this.id});
+  Tarefa.completa({
+    int? id,
+    required this.titulo,
+    this.descricao,
+    required this.importante,
+    required this.dataPrevista,
+    //bool realizadoInicial = false,
+  }) : _realizado = false;
 
   void estaRealizado({bool realizado = false}) {
     this._realizado = realizado;
   }
 
-  bool realizado() {
+  /*bool realizado() {
     return this._realizado;
-  }
+  }*/
+  bool get realizado => _realizado;
 
   @override
   set id(int id) {
-    this.id = id;
+    _id = id;
   }
 
   @override
   Map<String, dynamic> toMap() {
-    // TODO: implement toMap
-    throw UnimplementedError();
+    return {
+      'id': _id,
+      'titulo': titulo,
+      'descricao': descricao,
+      'data_prevista': Util.formatarDataParaBD(dataPrevista),
+      'importante': importante ? 1 : 0,
+      'realizado': realizado ? 1 : 0,
+    };
   }
+
+  @override
+  int? get id => _id;
 }
 
 class ListaTarefas with ChangeNotifier {
   final List<Tarefa> tarefas = [
-    Tarefa(
-      titulo: "tarefa1",
-      descricao: "descr_1",
-      prioridade: 1,
-      //estaRealizado: false,
-      id: 1,
-    ),
-    Tarefa(
-      titulo: "tarefa2",
-      descricao: "descr_1",
-      prioridade: 3,
-      //estaRealizado: false,
-      id: 2,
-    ),
-    Tarefa(
-      titulo: "tarefa3",
-      descricao: "descr_1",
-      prioridade: 4,
-      //estaRealizado: false,
-      id: 3,
-    ),
-    Tarefa(
-      titulo: "tarefa4",
-      descricao: "descr_1",
-      prioridade: 5,
-      //estaRealizado: false,
-      id: 4,
-    ),
-    Tarefa(
-      titulo: "tarefa5",
-      descricao: "descr_1",
-      prioridade: 2,
-      //estaRealizado: false,
-      id: 5,
-    ),
-    Tarefa(
-      titulo: "tarefa6",
-      descricao: "descr_1",
-      prioridade: 2,
-      //estaRealizado: false,
-      id: 6,
-    ),
+    Tarefa(titulo: "tarefa1", descricao: "descr_1", importante: true),
+    Tarefa(titulo: "tarefa2", descricao: "descr_1", importante: false),
+    Tarefa(titulo: "tarefa3", descricao: "descr_1", importante: true),
+    Tarefa(titulo: "tarefa4", descricao: "descr_1", importante: false),
+    Tarefa(titulo: "tarefa5", descricao: "descr_1", importante: true),
+    Tarefa(titulo: "tarefa6", descricao: "descr_1", importante: false),
   ];
   void addTarefa(Tarefa tarefa) {
     tarefas.add(tarefa);
