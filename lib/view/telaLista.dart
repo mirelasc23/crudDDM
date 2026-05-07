@@ -32,7 +32,7 @@ class TelaLista extends StatelessWidget {
               ),
               leading: Text("${tarefa.id}"),
               subtitle: Text(tarefa.descricao),
-              trailing: Text(tarefa.realizado ? "Realizado" : "Pendente"),
+              //trailing: Text(tarefa.realizado ? "Realizado" : "Pendente"),
               //tileColor: tarefa.estaFeliz ? Colors.green[300] : Colors.red[300] ,
               //subtitle: Text(tarefa.estaFeliz ? "Está feliz :)" : "Está triste :("),
               onTap: () {
