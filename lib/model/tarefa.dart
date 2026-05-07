@@ -82,7 +82,7 @@ class Tarefa implements Model {
       descricao: map['descricao'] as String?,
       dataPrevista: DateTime.parse(map['data_prevista'] as String),
       importante: map['importante'] == 1,
-      realizado: realizadoDb, // Passa diretamente para o construtor
+      realizadoBD: realizadoDb, // Passa diretamente para o construtor
       custo: custoDb,
     );
 
