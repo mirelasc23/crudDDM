@@ -7,12 +7,36 @@ class TarefaProvider with ChangeNotifier {
 
   List<Tarefa> get tarefasDummy {
     _tarefas = [
-      Tarefa(titulo: "Maria", estaFeliz: true),
-      Tarefa(titulo: "João", estaFeliz: false),
-      Tarefa(titulo: "Ana", estaFeliz: true),
-      Tarefa(titulo: "Carlos", estaFeliz: false),
-      Tarefa(titulo: "Sofia", estaFeliz: true),
-      Tarefa(titulo: "Juarez", estaFeliz: true),
+      Tarefa(
+        titulo: "Tarefa DDM",
+        importante: true,
+        dataPrevista: DateTime.now(),
+      ),
+      Tarefa(
+        titulo: "Trabalho DDM",
+        importante: false,
+        dataPrevista: DateTime.now().add(Duration(days: 1)),
+      ),
+      Tarefa(
+        titulo: "Introdução TCCI",
+        importante: true,
+        dataPrevista: DateTime.now().add(Duration(days: 3)),
+      ),
+      Tarefa(
+        titulo: "Apresentação Parcial WEBII",
+        importante: false,
+        dataPrevista: DateTime.now().add(Duration(days: 3)),
+      ),
+      Tarefa(
+        titulo: "Apresentação Final PSII",
+        importante: true,
+        dataPrevista: DateTime.now().add(Duration(days: 3)),
+      ),
+      Tarefa(
+        titulo: "Reunião Orientador TCCI",
+        importante: true,
+        dataPrevista: DateTime.now().add(Duration(days: 3)),
+      ),
     ];
     return _tarefas;
   }
@@ -26,8 +50,8 @@ class TarefaProvider with ChangeNotifier {
     notifyListeners();
   }
 
-    DBUtil.insert(tarefa);
   void addTarefa(Tarefa tarefa) {
+    DBUtil.insert(tarefa);
     _tarefas.add(tarefa);
     notifyListeners();
   }

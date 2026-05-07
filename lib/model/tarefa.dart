@@ -25,16 +25,15 @@ class Tarefa implements Model {
     this.descricao,
     required this.importante,
     required this.dataPrevista,
-    //bool realizadoInicial = false,
-  }) : _realizado = false;
+    bool realizadoBD = false,
+    this.custo,
+  }) : _id = id,
+       _realizado = realizadoBD;
 
-  void estaRealizado({bool realizado = false}) {
-    this._realizado = realizado;
+  void estaRealizado(bool realizado) {
+    _realizado = realizado;
   }
 
-  /*bool realizado() {
-    return this._realizado;
-  }*/
   bool get realizado => _realizado;
 
   @override
@@ -48,16 +47,28 @@ class Tarefa implements Model {
       'id': _id,
       'titulo': titulo,
       'descricao': descricao,
-      'data_prevista': Util.formatarDataParaBD(dataPrevista),
+      //'data_prevista': Util.formatarDataParaBD(dataPrevista),
+      'data_prevista': dataPrevista.toIso8601String(),
       'importante': importante ? 1 : 0,
       'realizado': realizado ? 1 : 0,
+      'custo': custo ? (custo * 100).round() : 0,
     };
   }
 
   @override
   int? get id => _id;
+
+  factory Tarefa.fromMap(Map<String, dynamic> map) {
+    var tarefa = Tarefa(
+      descricao: map['nome'] as String,
+      importante: map['importante'] == 0 ? false : true,
+    );
+    tarefa.id = map['id'] as int;
+    return tarefa;
+  }
 }
 
+/*
 class ListaTarefas with ChangeNotifier {
   final List<Tarefa> tarefas = [
     Tarefa(titulo: "tarefa1", descricao: "descr_1", importante: true),
@@ -73,3 +84,4 @@ class ListaTarefas with ChangeNotifier {
     notifyListeners();
   }
 }
+*/
