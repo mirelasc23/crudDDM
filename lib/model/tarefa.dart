@@ -1,6 +1,10 @@
 import 'package:ddm_crud_sqlite/model/model.dart';
-import 'package:ddm_crud_sqlite/util/rotas.dart';
-import 'package:flutter/material.dart';
+// import 'package:ddm_crud_sqlite/util/rotas.dart';
+// import 'package:flutter/material.dart';
+
+//import 'model/model.dart';
+//import 'package:crudDDM/util/rotas.dart';
+//import 'flutter/material.dart';
 
 class Tarefa implements Model {
   int? _id;
@@ -77,7 +81,7 @@ class Tarefa implements Model {
     final double? custoDb = map['custo'] != null ? (map['custo'] as int) / 100.0 : null;
 
     // 2. Criamos a instância passados os parâmetros corrigidos
-    var tarefa = Tarefa(
+    var tarefa = Tarefa.completa(
       titulo: map['titulo'] as String,
       descricao: map['descricao'] as String?,
       dataPrevista: DateTime.parse(map['data_prevista'] as String),

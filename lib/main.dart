@@ -1,7 +1,9 @@
+import 'package:ddm_crud_sqlite/providers/tarefa_provider.dart';
 import 'package:ddm_crud_sqlite/util/rotas.dart';
-import 'package:ddm_crud_sqlite/view/telaDetalhes.dart';
-import 'package:ddm_crud_sqlite/view/telaForm.dart';
-import 'package:ddm_crud_sqlite/view/telaLista.dart';
+import 'package:ddm_crud_sqlite/view/tela_detalhes.dart';
+import 'package:ddm_crud_sqlite/view/tela_form.dart';
+import 'package:ddm_crud_sqlite/view/tela_lista.dart';
+// import 'package:ddm_crud_sqlite/widgets/show_date_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.orange),
         ),
         home: TelaLista(titulo: 'Tarefas'),
+        // home: DatePickerApp(titulo: 'tit'),
         routes: {
           Rotas.telaForm: (context) => TelaLista(titulo: 'Tarefas'),
           Rotas.telaForm: (context) => TelaForm(titulo: 'Nova Tarefa'),
