@@ -12,7 +12,7 @@ class Calendario extends StatelessWidget {
       initialDate: DateTime.now(),
       firstDate: DateTime.now(),
       lastDate: DateTime(DateTime.now().year + 3),
-      locale: const Locale('pt', 'BR'),
+      //locale: const Locale('pt', 'BR'),
     );
 
     // Se o usuário não cancelou, enviamos a data de volta
