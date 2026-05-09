@@ -1,3 +1,5 @@
+import 'package:ddm_crud_sqlite/util/rotas.dart';
+
 import '../model/tarefa.dart';
 import 'package:flutter/material.dart';
 
@@ -5,6 +7,11 @@ class TelaDetalhes extends StatelessWidget {
   final String titulo;
 
   const TelaDetalhes({super.key, required this.titulo});
+
+  bool _concluirTarefa(Tarefa tarefa){
+    tarefa.estaRealizado(!tarefa.realizado);
+    return tarefa.realizado;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,9 +23,15 @@ class TelaDetalhes extends StatelessWidget {
         child: Column(
           mainAxisAlignment: .center,
           children: [
-            Text("tela DETALHES", style: TextStyle(fontSize: 24)),
+            Text("Id: ${tarefa.id}  |   Título: ${tarefa.titulo}", style: TextStyle(fontSize: 24)),
+            Text("Descrição: ${tarefa.descricao}", style: TextStyle(fontSize: 20)),
+            Text("Data: ${Util.formatarDataParaBDLocalization(tarefa.dataPrevista)}", style: TextStyle(fontSize: 20)),
             Text(
-              "titulo: ${tarefa.titulo} está ${tarefa.realizado ? "REALIZADO! :)" : "... pendente :("}",
+              " ${tarefa.importante ? "É prioridade!" : ""}",
+              style: TextStyle(fontSize: 18),
+            ),
+            Text(
+              " ${tarefa.realizado ? "Concluído! :)" : "Está pendente... :("}",
               style: TextStyle(fontSize: 18),
             ),
             /*CheckboxListTile(
@@ -26,6 +39,12 @@ class TelaDetalhes extends StatelessWidget {
               value: tarefa.realizado,
               //onChanged: (bool? value) => setState(() => tarefa.realizado = value==true),
             ),*/
+            CheckboxListTile(
+              title: Text("Está realizada?"),
+              value: tarefa.realizado,
+              onChanged: (bool? value) =>//()
+                  value = _concluirTarefa(tarefa),
+            ),
           ],
         ),
       ),

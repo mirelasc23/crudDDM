@@ -5,7 +5,9 @@ class Rotas {
   static final telaInicial = "/";
   static final telaLista = "/tela_listagem";
   static final telaForm = "/tela_formulario";
+  static final telaCadastro = "/tela_cadastro";
   static final tarefaDetalhada = "/tarefa-detalhada";
+  static final tarefaAConcluir = "/tarefa-concluir";
 }
 
 class Util {

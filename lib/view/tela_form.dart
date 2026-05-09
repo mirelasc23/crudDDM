@@ -22,12 +22,13 @@ class _TelaFormState extends State<TelaForm> {
   var _estaRealizado = false;
   Tarefa? _tarefa;
   final _tituloController = TextEditingController();
+  final _descricaoController = TextEditingController();
 
   void _mostraDados() {
     setState(() {
       _tarefa = Tarefa(
-        titulo: "tarefa1",
-        descricao: "descr_1",
+        titulo: _tituloController.text,
+        descricao: _descricaoController.text,
         importante: true,
         dataPrevista: DateTime.now().add(Duration(days: 3)),
         //estaRealizado: _tarefa?.realizado(),
@@ -64,6 +65,13 @@ class _TelaFormState extends State<TelaForm> {
               controller: _tituloController,
               decoration: InputDecoration(
                 labelText: "Informe o título",
+                border: OutlineInputBorder(),
+              ),
+            ),
+            TextField(
+              controller: _descricaoController,
+              decoration: InputDecoration(
+                labelText: "Informe a descrição",
                 border: OutlineInputBorder(),
               ),
             ),
