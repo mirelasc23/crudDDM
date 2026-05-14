@@ -35,8 +35,6 @@ class _FormularioTarefaState extends State<FormularioTarefa> {
         _dataSelecionada = escolhida;
       });
     }
-
-    
   }
 
   void _salvar() async {
@@ -48,7 +46,8 @@ class _FormularioTarefaState extends State<FormularioTarefa> {
       titulo: _tituloController.text,
       descricao: _descricaoController.text,
       custo: valorFinal,
-      dataPrevista: _dataSelecionada!, importante: _eImportante,
+      dataPrevista: _dataSelecionada!,
+      importante: _eImportante,
     );
 
     // 2. Salva no SQLite
@@ -57,10 +56,9 @@ class _FormularioTarefaState extends State<FormularioTarefa> {
     print("Tarefa:${novaTarefa.titulo}");
     listaTarefas.addTarefa(novaTarefa);
 
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Salvo com sucesso!')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Salvo com sucesso!')));
 
     Navigator.pushNamed(context, Rotas.telaLista);
 
@@ -71,10 +69,11 @@ class _FormularioTarefaState extends State<FormularioTarefa> {
 
   @override
   Widget build(BuildContext context) {
-    Tarefa tarefa = ModalRoute.of(context)?.settings.arguments as Tarefa;
+    //Tarefa tarefa = ModalRoute.of(context)?.settings.arguments as Tarefa;
     return Scaffold(
       appBar: AppBar(title: Text("Tarefa")),
-      body: Padding(//Center(//
+      body: Padding(
+        //Center(//
         padding: EdgeInsets.all(16.0),
         child: Column(
           children: [
@@ -91,10 +90,10 @@ class _FormularioTarefaState extends State<FormularioTarefa> {
               controller: _custoController,
               decoration: InputDecoration(
                 labelText: 'Custo',
-                prefixText: 'R\$ '
+                prefixText: 'R\$ ',
               ),
               // onChanged: (value) {
-                
+
               // },
             ),
             CheckboxListTile(
@@ -112,9 +111,11 @@ class _FormularioTarefaState extends State<FormularioTarefa> {
             SizedBox(height: 20),
             Row(
               children: [
-                Text(_dataSelecionada == null 
-                    ? 'Nenhuma data selecionada' 
-                    : 'Data: ${DateFormat('dd/MM/yyyy').format(_dataSelecionada!)}'),
+                Text(
+                  _dataSelecionada == null
+                      ? 'Nenhuma data selecionada'
+                      : 'Data: ${DateFormat('dd/MM/yyyy').format(_dataSelecionada!)}',
+                ),
                 Spacer(),
                 TextButton(
                   onPressed: () => _selecionarData(context),
@@ -122,10 +123,7 @@ class _FormularioTarefaState extends State<FormularioTarefa> {
                 ),
               ],
             ),
-            ElevatedButton(
-              onPressed: _salvar,
-              child: Text('Salvar no Banco'),
-            ),
+            ElevatedButton(onPressed: _salvar, child: Text('Salvar no Banco')),
             /*ElevatedButton(
               onPressed: _mostraDados,
               child: const Icon(Icons.done_outline_outlined),

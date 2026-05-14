@@ -1,5 +1,5 @@
 //import 'package:ddm_crud_sqlite/teste-sdp/cadastro.dart';
-import 'package:ddm_crud_sqlite/teste-sdp/database_helper.dart';
+//import 'package:ddm_crud_sqlite/teste-sdp/database_helper.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart'; // Opcional: para formatar a data na tela
 
@@ -31,7 +31,7 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
     if (_nomeController.text.isEmpty || _dataSelecionada == null) return;
 
     // 1. Gera o Objeto
-/*    final novoCadastro = Cadastro(
+    /*    final novoCadastro = Cadastro(
       nome: _nomeController.text,
       data: _dataSelecionada!,
     );
@@ -39,11 +39,9 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
     // 2. Salva no SQLite
     await DatabaseHelper.insertCadastro(novoCadastro);*/
 
-    
-
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(content: Text('Salvo com sucesso!')),
-    );
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(SnackBar(content: Text('Salvo com sucesso!')));
   }
 
   @override
@@ -61,9 +59,11 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
             SizedBox(height: 20),
             Row(
               children: [
-                Text(_dataSelecionada == null 
-                    ? 'Nenhuma data selecionada' 
-                    : 'Data: ${DateFormat('dd/MM/yyyy').format(_dataSelecionada!)}'),
+                Text(
+                  _dataSelecionada == null
+                      ? 'Nenhuma data selecionada'
+                      : 'Data: ${DateFormat('dd/MM/yyyy').format(_dataSelecionada!)}',
+                ),
                 Spacer(),
                 TextButton(
                   onPressed: () => _selecionarData(context),
@@ -71,10 +71,7 @@ class _FormularioCadastroState extends State<FormularioCadastro> {
                 ),
               ],
             ),
-            ElevatedButton(
-              onPressed: _salvar,
-              child: Text('Salvar no Banco'),
-            ),
+            ElevatedButton(onPressed: _salvar, child: Text('Salvar no Banco')),
           ],
         ),
       ),

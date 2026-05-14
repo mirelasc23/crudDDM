@@ -26,6 +26,7 @@ class Calendario extends StatelessWidget {
     return ElevatedButton(
       style: ElevatedButton.styleFrom(
         backgroundColor: const Color.fromARGB(255, 2, 81, 146),
+        //backgroundColor: const Color.fromARGB(255, 2, 81, 146),
       ),
       onPressed: () => _selectDate(context),
       child: const Text(
