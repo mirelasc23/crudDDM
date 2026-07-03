@@ -28,7 +28,7 @@ class MyApp extends StatelessWidget {
         home: TelaLista(titulo: 'Tarefas'),
         // home: DatePickerApp(titulo: 'tit'),
         routes: {
-          Rotas.telaForm: (context) => TelaLista(titulo: 'Tarefas'),
+          Rotas.telaLista: (context) => TelaLista(titulo: 'Tarefas'),
           Rotas.telaForm: (context) => TelaForm(titulo: 'Nova Tarefa'),
           Rotas.telaCadastro: (context) => FormularioTarefa(),
           Rotas.tarefaDetalhada: (context) => TelaDetalhes(titulo: 'Tarefa'),

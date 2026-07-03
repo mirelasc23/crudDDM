@@ -54,7 +54,7 @@ class Tarefa implements Model {
       //'data_prevista': Util.formatarDataParaBD(dataPrevista),
       'data_prevista': dataPrevista.toIso8601String(),
       'importante': importante ? 1 : 0,
-      'realizado': realizado ? 1 : 0,
+      'realizada': realizado ? 1 : 0,
       // 'custo': custo ? (custo * 100).round() : 0,
       'custo': custo != null ? (custo! * 100).round() : 0,
     };
@@ -77,8 +77,11 @@ class Tarefa implements Model {
 
     // 1. Extraímos e tratamos os valores antes de criar a instância
     final int idDb = map['id'] as int;
-    final bool realizadoDb = map['realizado'] == 1; // Simplificado: se for 1 é true
-    final double? custoDb = map['custo'] != null ? (map['custo'] as int) / 100.0 : null;
+    final bool realizadoDb =
+        map['realizado'] == 1; // Simplificado: se for 1 é true
+    final double? custoDb = map['custo'] != null
+        ? (map['custo'] as int) / 100.0
+        : null;
 
     // 2. Criamos a instância passados os parâmetros corrigidos
     var tarefa = Tarefa.completa(
